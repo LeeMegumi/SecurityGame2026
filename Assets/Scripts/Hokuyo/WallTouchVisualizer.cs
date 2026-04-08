@@ -26,6 +26,7 @@ public class WallTouchVisualizer : MonoBehaviour
 
     private List<RectTransform> _dots = new List<RectTransform>();
 
+    public UITo3DSpawner spawner;
     void Start()
     {
         if (detector == null) { Debug.LogError("[Visualizer] 請指定 WallTouchDetector"); return; }
@@ -50,6 +51,8 @@ public class WallTouchVisualizer : MonoBehaviour
             {
                 _dots[i].gameObject.SetActive(true);
                 Vector2 target = WallToCanvas(points[i]);
+                Vector2 MouseTargetPos = target+new Vector2(Screen.width/2, Screen.height/2); 
+                spawner.SpawnCubeAtUIPosition(MouseTargetPos);
                 _dots[i].anchoredPosition = Vector2.Lerp(
                     _dots[i].anchoredPosition, target, Time.deltaTime * lerpSpeed);
             }

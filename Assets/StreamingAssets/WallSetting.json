@@ -8,5 +8,5 @@
     "rectWidth": 2960.0,
     "rectHeight": 1640.0,
     "touchThreshold": 150.0,
-    "clusterRadius": 120.0
+    "clusterRadius": 200.0
 }
