@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: aafe48d7586111944ab7da8f639609cb
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191455
+  packageName: Top Down Effects
+  packageVersion: 1.0
+  assetPath: Assets/SineVFX/TopDownEffects/_Documentation/03.Customization.txt
+  uploadId: 740868

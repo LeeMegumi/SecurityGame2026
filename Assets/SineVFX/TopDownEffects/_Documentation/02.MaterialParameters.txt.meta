@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8ac4d7068ea3b994b86a9ab353dc5935
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191455
+  packageName: Top Down Effects
+  packageVersion: 1.0
+  assetPath: Assets/SineVFX/TopDownEffects/_Documentation/02.MaterialParameters.txt
+  uploadId: 740868

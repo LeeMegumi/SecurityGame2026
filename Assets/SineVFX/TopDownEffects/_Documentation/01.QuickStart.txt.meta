@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1cd2ce367d57dd94eaea41945f6ea928
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191455
+  packageName: Top Down Effects
+  packageVersion: 1.0
+  assetPath: Assets/SineVFX/TopDownEffects/_Documentation/01.QuickStart.txt
+  uploadId: 740868

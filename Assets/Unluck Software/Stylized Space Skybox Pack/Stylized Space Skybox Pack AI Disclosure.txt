@@ -1,0 +1,6 @@
+AI was used to generate space and elements for the skybox images. 
+The images were then upscaled and edited to fix seams, artifacts, stretch, and vortex elements. 
+Only generic words were used in prompts, no media titles or artist names.
+
+Images have been converted from single panorama to 6 sided cube maps. 
+Images have been completely transformed from their original promt output.

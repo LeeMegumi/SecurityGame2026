@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ccc5bdb85722c304daed04034a365764
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191455
+  packageName: Top Down Effects
+  packageVersion: 1.0
+  assetPath: Assets/SineVFX/TopDownEffects/_Documentation/04.CustomVertexStreams.txt
+  uploadId: 740868

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: d5eb24bcfe8eb8549b57980a979ea47d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 252327
+  packageName: Stylized Space Skybox Pack
+  packageVersion: 1.0
+  assetPath: Assets/Unluck Software/Tools/Scripts/SkyboxViewer.cs
+  uploadId: 621388
