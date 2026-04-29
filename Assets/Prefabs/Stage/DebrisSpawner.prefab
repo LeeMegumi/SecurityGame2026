@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6835097457985010629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1740193633269108388}
+  - component: {fileID: 3467033804910228533}
+  - component: {fileID: 2643918814349663902}
+  m_Layer: 0
+  m_Name: DebrisSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1740193633269108388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6835097457985010629}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3467033804910228533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6835097457985010629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c02e757517420b47a8031751f4f693a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debrisPrefabs:
+  - {fileID: 445958615017918974, guid: fbe1c2b66d14a004388ac7cb59827c13, type: 3}
+  - {fileID: 6828178242251696128, guid: d5b1feffea538094f8f295e6a98f09e1, type: 3}
+  - {fileID: 8562850492031948789, guid: 6780e2a3c361a6f4f874486a670b13fb, type: 3}
+  - {fileID: 4590043700908244541, guid: 9e0ef667477024640ac9dc9c7f4ac094, type: 3}
+  - {fileID: 5844106259965542430, guid: 0dea930adbbb7cd44a64780a68e3d56b, type: 3}
+  - {fileID: 6209628538557960637, guid: 2a6c7ea20683223468bd8c455350c9e1, type: 3}
+  - {fileID: 7938422997307556144, guid: 5f6eb37e64cbf634798a09f242d85c03, type: 3}
+  - {fileID: 3308529297582986866, guid: 8864f997eeeb3b240a76c354e21b2260, type: 3}
+  - {fileID: 1156885364340064991, guid: 83b8b6bba6fe5a14b9d8ac4289272083, type: 3}
+  - {fileID: 4412306766890177119, guid: 55018fba5550780419b7fd012ac5202f, type: 3}
+  - {fileID: 8159408959325861714, guid: c39d465b76bea914794f43f997693282, type: 3}
+  - {fileID: 6966358869630014566, guid: c59292641111bfc4cbb87089382ef186, type: 3}
+  debrisCount: 100
+  minScale: 2
+  maxScale: 5
+  innerRadius: 80
+  outerRadius: 200
+  bounciness: 0.5
+  friction: 0.2
+  initialSpeedMin: 1.5
+  initialSpeedMax: 4
+  maxSpeed: 6
+  boundaryForce: 40
+  driftForce: 10
+  driftInterval: 25
+  minAngularSpeed: 8
+  maxAngularSpeed: 25
+  rotationChangeInterval: 5
+  rotationCorrection: 2
+--- !u!114 &2643918814349663902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6835097457985010629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fedc5d135373ef149a43a5a39dae26e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveSpeed: 50
+  waveThickness: 10
+  startRadius: 0
+  maxRadius: 200
+  baseForce: 1000
+  minForceFactor: 0.4
+  spinForce: 0.01
+  autoFire: 0
+  autoInterval: 6
+  waveSphere: {fileID: 0}

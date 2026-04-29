@@ -19,22 +19,31 @@ public class WallTouchVisualizer : MonoBehaviour
 {
     [Header("─── 元件參考 ───")]
     public WallTouchDetector detector;
+    [Header("視覺物件-")]
     public RectTransform     touchPointPrefab;
-    public RectTransform     canvasRect;
+    [Header("UI觸發物件-")]
+    public RectTransform     triggerPointPrefab;
+    public RectTransform     USTcanvasRect;
+    public RectTransform     resizeCanvasRect;
 
     [Header("─── 視覺設定 ───")]
-    public Color touchColor   = new Color(0f, 0.8f, 1f, 0.85f);
+    public Color USTtouchColor   = new Color(0f, 0.8f, 1f, 0.85f);
+    public Color triggerTouchColor   = new Color(0f, 0f, 0f, 0.85f);
     public float touchDotSize = 60f;
     public float lerpSpeed    = 15f;
 
     public UITo3DSpawner spawner;
+
+    [Header("UI觸發物件可視化")]
+    public bool triggerVisualDebug;
 
     // ── 固定參考尺寸（與 WallGizmoCanvas 保持一致）────────
     // Canvas 解析度 1920×1080，所有 mm 座標依此比例換算
     private const float REF_W = 1920f;
     private const float REF_H = 1080f;
 
-    private List<RectTransform> _dots = new List<RectTransform>();
+    private List<RectTransform> UST_dots = new List<RectTransform>();
+    private List<RectTransform> resizeTrigger_dots = new List<RectTransform>();
 
     // ═══════════════════════════════════════════════════
     void Start()
@@ -49,39 +58,76 @@ public class WallTouchVisualizer : MonoBehaviour
     private void SyncDots(List<Vector2> points)
     {
         // 物件池：不足時才新增
-        while (_dots.Count < points.Count)
+        while (UST_dots.Count < points.Count)
         {
-            var dot = Instantiate(touchPointPrefab, canvasRect);
+            var dot = Instantiate(touchPointPrefab, USTcanvasRect);
             dot.sizeDelta = Vector2.one * touchDotSize;
             var img = dot.GetComponent<Image>();
-            if (img != null) img.color = touchColor;
-            _dots.Add(dot);
+          
+            if (img != null) img.color = USTtouchColor;
+           
+            UST_dots.Add(dot);
         }
 
-        for (int i = 0; i < _dots.Count; i++)
+        for (int i = 0; i < UST_dots.Count; i++)
         {
             if (i < points.Count)
             {
-                _dots[i].gameObject.SetActive(true);
+                UST_dots[i].gameObject.SetActive(true);
 
                 Vector2 target = WallToCanvas(points[i]);
                 Vector2 screenTarget = target + new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
-                spawner.SpawnCubeAtUIPosition(screenTarget);
+                spawner.SpawnBulletAtUIPosition(screenTarget);
 
-                _dots[i].anchoredPosition = Vector2.Lerp(
-                    _dots[i].anchoredPosition, target, Time.deltaTime * lerpSpeed);
+                UST_dots[i].anchoredPosition = Vector2.Lerp(
+                    UST_dots[i].anchoredPosition, target, Time.deltaTime * lerpSpeed);
             }
             else
             {
-                _dots[i].gameObject.SetActive(false);
+                UST_dots[i].gameObject.SetActive(false);
             }
         }
+
+        while (resizeTrigger_dots.Count < points.Count)
+        {
+            var dot = Instantiate(triggerPointPrefab, resizeCanvasRect);
+
+            dot.sizeDelta = Vector2.one * touchDotSize;
+            var img = dot.GetComponent<Image>();
+            var alphaGroup = dot.GetComponent<CanvasGroup>();
+            if (img != null) img.color = triggerTouchColor;
+            if (alphaGroup != null) alphaGroup.alpha = triggerVisualDebug == true ? 1 : 0;
+            resizeTrigger_dots.Add(dot);
+        }
+
+        for (int i = 0; i < resizeTrigger_dots.Count; i++)
+        {
+            if (i < points.Count)
+            {
+                resizeTrigger_dots[i].gameObject.SetActive(true);
+                var alphaGroup = resizeTrigger_dots[i].GetComponent<CanvasGroup>();
+                if (alphaGroup != null) alphaGroup.alpha = triggerVisualDebug == true ? 1 : 0;
+                Vector2 target = WallToCanvas(points[i]);
+                Vector2 screenTarget = target + new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+                spawner.SpawnBulletAtUIPosition(screenTarget);
+
+                resizeTrigger_dots[i].anchoredPosition = Vector2.Lerp(
+                    resizeTrigger_dots[i].anchoredPosition, target, Time.deltaTime * lerpSpeed);
+            }
+            else
+            {
+                resizeTrigger_dots[i].gameObject.SetActive(false);
+            }
+        }
+
     }
 
     // ═══════════════════════════════════════════════════
     private void HideAllDots()
     {
-        foreach (var d in _dots) d.gameObject.SetActive(false);
+        foreach (var d in UST_dots) d.gameObject.SetActive(false);
+        foreach (var d in resizeTrigger_dots) d.gameObject.SetActive(false);
+
     }
 
     // ═══════════════════════════════════════════════════
@@ -100,8 +146,8 @@ public class WallTouchVisualizer : MonoBehaviour
     // ═══════════════════════════════════════════════════
     private Vector2 WallToCanvas(Vector2 wallPosMm)
     {
-        float cw = canvasRect.rect.width;
-        float ch = canvasRect.rect.height;
+        float cw = USTcanvasRect.rect.width;
+        float ch = USTcanvasRect.rect.height;
 
         float nx = (wallPosMm.x - detector.rectX) / detector.rectWidth;
         float ny = (wallPosMm.y - detector.rectY) / detector.rectHeight;

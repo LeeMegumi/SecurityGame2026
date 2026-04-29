@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 53e8e103f0eefb349917fe59ed7e98a7
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 8933
+  packageName: FX Mega Pack
+  packageVersion: 1.2.6
+  assetPath: Assets/FX Mega Pack/Scripts/RandomRotate.cs
+  uploadId: 396129

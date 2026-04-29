@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: a27801e7c5067a9418a1703717e54069
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 8933
+  packageName: FX Mega Pack
+  packageVersion: 1.2.6
+  assetPath: Assets/FX Mega Pack/Scripts/ParticleSpawner.cs
+  uploadId: 396129

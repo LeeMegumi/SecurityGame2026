@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 9d3a6f13658cd834483e5c2f8b942da4
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 8933
+  packageName: FX Mega Pack
+  packageVersion: 1.2.6
+  assetPath: Assets/FX Mega Pack/Scripts/SmoothCameraOrbit.cs
+  uploadId: 396129

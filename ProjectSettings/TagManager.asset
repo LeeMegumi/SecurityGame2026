@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Enemy
   - Bullet
+  - FxTemporaire
+  - TriggerBox
+  - Wall
+  - Environment
+  - Buff
   layers:
   - Default
   - TransparentFX
@@ -14,8 +19,8 @@ TagManager:
   - Water
   - UI
   - Bullet
-  - 
-  - 
+  - Shield
+  - Enemy
   - 
   - 
   - 
