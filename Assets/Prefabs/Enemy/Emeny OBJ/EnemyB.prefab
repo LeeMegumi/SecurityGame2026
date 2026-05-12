@@ -10821,9 +10821,9 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3370014092491750239}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -10860,7 +10860,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_SkinnedMotionVectors: 1
+  m_SkinnedMotionVectors: 0
   m_Mesh: {fileID: -3237757742826550448, guid: 5808448dc9bed4e40b0d1dae3cb03049, type: 3}
   m_Bones:
   - {fileID: 6670446642151767559}
@@ -11115,9 +11115,9 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4274701677753488162}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -11154,7 +11154,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_SkinnedMotionVectors: 1
+  m_SkinnedMotionVectors: 0
   m_Mesh: {fileID: -8284922302730793408, guid: 5808448dc9bed4e40b0d1dae3cb03049, type: 3}
   m_Bones:
   - {fileID: 6670446642151767559}
@@ -11475,7 +11475,7 @@ GameObject:
   - component: {fileID: 4420743481174793921}
   - component: {fileID: 9023075966725857879}
   - component: {fileID: 7075433475113524691}
-  - component: {fileID: 6143294129831527438}
+  - component: {fileID: 4439876477945496642}
   m_Layer: 8
   m_Name: EnemyB
   m_TagString: Enemy
@@ -11515,33 +11515,39 @@ MonoBehaviour:
   currentEnemyLevel: 4
   levelConfigs:
   - level: 0
-    scale: 2
-    moveSpeed: 7
+    scale: 2.5
+    moveSpeed: 8
     maxHealth: 500
     wallDamage: -1
+    scoreValue: 5000
   - level: 1
-    scale: 2.2
+    scale: 3.5
     moveSpeed: 6
     maxHealth: 1000
     wallDamage: -5
+    scoreValue: 10000
   - level: 2
-    scale: 2.4
-    moveSpeed: 5
-    maxHealth: 1000
-    wallDamage: -10
-  - level: 3
-    scale: 2.8
+    scale: 5
     moveSpeed: 4
     maxHealth: 2000
-    wallDamage: -20
+    wallDamage: -10
+    scoreValue: 100000
+  - level: 3
+    scale: 8
+    moveSpeed: 3
+    maxHealth: 5000
+    wallDamage: -30
+    scoreValue: 300000
   - level: 4
     scale: 3
     moveSpeed: 5
     maxHealth: 100
     wallDamage: -1
+    scoreValue: 100
   _currentHealth: 0
   _currentSpeed: 0
   _currentWallDamage: 0
+  _currentScoreValue: 0
   healthBar: {fileID: 7075433475113524691}
   EnemyAnimator: {fileID: 6544084640154824943}
   EnemyMeshRenderer:
@@ -11562,6 +11568,11 @@ MonoBehaviour:
   SourcePrefab: {fileID: 0}
   _waveManager: {fileID: 0}
   WeakMonster: 0
+  EnemyAudioClips:
+  - {fileID: 8300000, guid: 97f490cb3195b6a4ba15fa3b29b7cb0c, type: 3}
+  - {fileID: 8300000, guid: d730a3c5cae731b4ea29a117c73ce7a1, type: 3}
+  - {fileID: 8300000, guid: e92b0ac374067ba49afe7cf5808c3e3d, type: 3}
+  - {fileID: 8300000, guid: fc32146c48750e34292eb0dc6b013bb3, type: 3}
 --- !u!65 &9023075966725857879
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11599,33 +11610,103 @@ MonoBehaviour:
   fill_Sprite: {fileID: 3317844582562318786}
   smoothSpeed: 5
   maxHealth: 0
---- !u!54 &6143294129831527438
-Rigidbody:
+--- !u!82 &4439876477945496642
+AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5354292154927983945}
+  m_Enabled: 1
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
     serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
     serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5414911841151411960
 GameObject:
   m_ObjectHideFlags: 0
@@ -11958,9 +12039,9 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6750626148114076448}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -11997,7 +12078,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_SkinnedMotionVectors: 1
+  m_SkinnedMotionVectors: 0
   m_Mesh: {fileID: -6455259542570520182, guid: 5808448dc9bed4e40b0d1dae3cb03049, type: 3}
   m_Bones:
   - {fileID: 6670446642151767559}

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 063d7636df2d03d4b84d91c13ffbe95d
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_urp/shader/scan_line_urp.shadergraph
+  uploadId: 691619

@@ -12,6 +12,8 @@ public class Defend_Action : MonoBehaviour
     public Animator Defend_Animator;
     public Animator Weak_Animator;
 
+    private AudioSource Hurted_Audio;
+
     [SerializeField] public ParticleSystem brokenParticle; // 從 Inspector 拖入
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,8 +23,10 @@ public class Defend_Action : MonoBehaviour
 
     void _init()
     {
+        Hurted_Audio = GetComponent<AudioSource>();
         brokenParticle.Stop();
         currentActionType = DefendActionType.Normal;
+
     }
     // Update is called once per frame
     void Update()
@@ -35,10 +39,12 @@ public class Defend_Action : MonoBehaviour
         {
             case DefendActionType.Normal:
                 Defend_Animator.Play("Shield_Hurt");
+                Hurted_Audio.Play();
                 break;
             case DefendActionType.Weaken:
                 brokenParticle.Play();
                 Defend_Animator.Play("Shield_WeakenHurt");
+                Hurted_Audio.Play();
                 break;
         }
         
@@ -54,7 +60,7 @@ public class Defend_Action : MonoBehaviour
                 Weak_Animator.Play("Empty");
                 break;
             case DefendActionType.Weaken:
-                Defend_Animator.Play("Shield_Weaken");
+                Defend_Animator.Play("Shield_BeWeaken");
                 Weak_Animator.Play("Weak");
                 break;
         }

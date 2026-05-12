@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class HealthBar : MonoBehaviour
 {
@@ -9,15 +10,16 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private float smoothSpeed = 5f; // Lerp 平滑速度
 
     [Header("閃爍傷害提示")]
-    [SerializeField] private Image damageFlashImage; // 透明閃爍 Image（疊加在畫面上）
     [SerializeField] private float flashDuration = 0.15f;  // 閃爍淡入時間
     [SerializeField] private float flashMaxAlpha = 1f;  // 閃爍最大透明度
 
     [SerializeField] private int maxHealth;  // 最大血量（從 PlayerData 讀取）
 
     private float _targetFillAmount;   // 目標 Fill Amount（即時更新）
-    private Coroutine _flashCoroutine;
 
+
+    public Animator healthLock_Anime;   // 簡單模式鎖血動畫（刺蝟盾牌）
+    public Animator HurtSparkle_Anime;   //受擊動畫（閃爍）
     // ── 公開屬性 ──────────────────────────────────────────
     /// <summary>true = 存活，false = 死亡</summary>
     public bool IsAlive => PlayerData.instance.currentPlayercontent.health > 0f;
@@ -27,14 +29,6 @@ public class HealthBar : MonoBehaviour
     {
         if (fillImage != null)
             fillImage.fillAmount = 1f;
-
-        // 確保閃爍圖片一開始是完全透明
-        if (damageFlashImage != null)
-        {
-            Color c = damageFlashImage.color;
-            c.a = 0f;
-            damageFlashImage.color = c;
-        }
     }
 
     private void Start()
@@ -61,92 +55,58 @@ public class HealthBar : MonoBehaviour
 
     // ─────────────────────────────────────────────────────
     /// <summary>設定當前血量（外部呼叫此方法即可）</summary>
-    public void SetHealth(float newHealth)
+    public void SetHealth(int value)
     {
-        float previous = PlayerData.instance.currentPlayercontent.health;
-        PlayerData.instance.currentPlayercontent.health = (int)Mathf.Clamp(newHealth, 0f, maxHealth);
-        _targetFillAmount = (float)PlayerData.instance.currentPlayercontent.health / (float)maxHealth;
+        int previous = PlayerData.instance.currentPlayercontent.health;
 
-        // 若血量有減少（受傷），觸發閃爍效果
-        if (newHealth < previous)
-            TriggerDamageFlash();
-    }
-
-    /// <summary>
-    /// 玩家受到傷害時，扣血，當血量小於等於0時，停止扣血
-    /// 玩家擊中回血時，增加血量，當血量大於等於100時，停止回血
-    /// </summary>
-    /// <param name="value"></param>
-    void OnHealthChange(int value)
-    {
-        int playerHealth = PlayerData.instance.currentPlayercontent.health;
-        if (playerHealth <= 0)
-        {
-            if(Main.instance.IsGaming)
-            {
-                GameEvents.current.GameOver(); // 觸發玩家死亡事件
-            }
-            return; // 已死亡且嘗試扣血，忽略
-        }
         switch (value)
         {
             case < 0: // 受傷
-                playerHealth += value; // value 是負數，所以是扣血
-                SetHealth(playerHealth + value);
-                PlayerData.instance.currentPlayercontent.health = playerHealth;
+                if (Main.instance.currentMode == Main.GameMode.Eazy) // 簡單模式鎖血：血量不可低於 50
+                {
+                    int lockedHealth = Mathf.Max(previous + value, 50); // 套用傷害，但鎖定下限為 50
+                    if (lockedHealth == 50 && previous >= 50) // 血量確實被鎖住了才播動畫
+                    {
+                        Debug.Log("血量被鎖住了，播放鎖血動畫");
+                        healthLock_Anime.Play("Lock");
+                    }
+                    else if (lockedHealth > 50) // 還沒到鎖血線，正常受擊動畫
+                    {
+                        Debug.Log("血量還沒被鎖住，正常受擊動畫");
+                        HurtSparkle_Anime.Play("HurtSparkle");
+                    }
+                    PlayerData.instance.currentPlayercontent.health = lockedHealth;
+                }
+                else // 一般模式，正常扣血
+                {
+                    PlayerData.instance.currentPlayercontent.health = Mathf.Clamp(previous + value, 0, maxHealth);
+                    HurtSparkle_Anime.Play("HurtSparkle");
+                }
                 break;
+
             case > 0: // 治療
-                playerHealth += value;
-                playerHealth = Mathf.Max(playerHealth, maxHealth); // 確保不超過最大血量
-                SetHealth(playerHealth + value);
+                PlayerData.instance.currentPlayercontent.health = Mathf.Min(previous + value, maxHealth); // 確保不超過最大血量
                 break;
         }
-        
+
+        _targetFillAmount = (float)PlayerData.instance.currentPlayercontent.health / (float)maxHealth;
     }
 
-    // ─────────────────────────────────────────────────────
-    private void TriggerDamageFlash()
+    /// <summary>
+    /// 玩家受到傷害時，扣血，當血量小於等於0時，觸發死亡
+    /// 玩家擊中回血時，增加血量，當血量大於等於100時，停止回血
+    /// </summary>
+    void OnHealthChange(int value)
     {
-        if (damageFlashImage == null) return;
+        SetHealth(value); // 先執行血量變更
 
-        // 若正在閃爍中，中斷舊的重新觸發
-        if (_flashCoroutine != null)
-            StopCoroutine(_flashCoroutine);
-
-        _flashCoroutine = StartCoroutine(FlashRoutine());
-    }
-
-    private IEnumerator FlashRoutine()
-    {
-        // 淡入
-        float elapsed = 0f;
-        while (elapsed < flashDuration)
+        // 扣血後才判斷是否死亡
+        if (PlayerData.instance.currentPlayercontent.health <= 0)
         {
-            elapsed += Time.deltaTime;
-            SetFlashAlpha(Mathf.Lerp(0f, flashMaxAlpha, elapsed / flashDuration));
-            yield return null;
+            if (Main.instance.IsGaming)
+                GameEvents.current.GameOver();
         }
-
-        // 淡出
-        elapsed = 0f;
-        while (elapsed < flashDuration)
-        {
-            elapsed += Time.deltaTime;
-            SetFlashAlpha(Mathf.Lerp(flashMaxAlpha, 0f, elapsed / flashDuration));
-            yield return null;
-        }
-
-        SetFlashAlpha(0f);
-        _flashCoroutine = null;
     }
-
-    private void SetFlashAlpha(float alpha)
-    {
-        Color c = damageFlashImage.color;
-        c.a = alpha;
-        damageFlashImage.color = c;
-    }
-
     /// <summary>
     /// （HSV 插值，全程保持飽和鮮豔）
     /// </summary>

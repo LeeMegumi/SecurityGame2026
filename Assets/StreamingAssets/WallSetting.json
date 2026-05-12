@@ -1,12 +1,12 @@
 {
     "sensorX": 1500.0,
-    "sensorY": 2200.0,
+    "sensorY": 2400.0,
     "wallWidth": 3000.0,
-    "wallHeight": 2200.0,
-    "rectX": 10.0,
-    "rectY": 450.0,
-    "rectWidth": 2980.0,
-    "rectHeight": 1700.0,
+    "wallHeight": 2400.0,
+    "rectX": 0.0,
+    "rectY": 582.5,
+    "rectWidth": 3000.0,
+    "rectHeight": 1687.5,
     "touchThreshold": 150.0,
     "clusterRadius": 200.0
 }

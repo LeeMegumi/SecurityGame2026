@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0a2a1a13375a4a04cb0162dc3c9bda18
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_urp/demo_urp_scene_scan.unity
+  uploadId: 691619

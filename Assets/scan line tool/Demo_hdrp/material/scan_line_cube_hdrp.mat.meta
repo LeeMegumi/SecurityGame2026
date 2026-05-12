@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6b197fcd33810e8438ae9135d4729eda
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_hdrp/material/scan_line_cube_hdrp.mat
+  uploadId: 691619

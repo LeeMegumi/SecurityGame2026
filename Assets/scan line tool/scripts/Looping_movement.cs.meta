@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 79742f1d0f4da4449b75dd4a548b9f1a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/scripts/Looping_movement.cs
+  uploadId: 691619

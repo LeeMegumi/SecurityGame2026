@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2058aef0abdd17044b6e270d6dfc1c71
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_hdrp/prefabs/scan line camera quad_hdrp.prefab
+  uploadId: 691619

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8a65f6b4adab30e4daac0e333344dae6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_built-in/material/scan_line_sphere_2_built-in.mat
+  uploadId: 691619

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 1ab9062ec57fba1468dffd2d06f45fc4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/scripts/Rotate_self.cs
+  uploadId: 691619

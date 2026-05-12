@@ -15,6 +15,6 @@ MonoBehaviour:
   buffId: RangeBuff
   displayName: RangeBuff
   icon: {fileID: 21300000, guid: 87c44a2384b638a4ea70c8a5e6da8b21, type: 3}
-  duration: 5
+  duration: 8
   flickerThreshold: 2
   flickerInterval: 0.15

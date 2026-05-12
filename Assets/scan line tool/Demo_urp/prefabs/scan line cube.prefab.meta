@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 849c2da9b43698f488744bb6657bbcac
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_urp/prefabs/scan line cube.prefab
+  uploadId: 691619

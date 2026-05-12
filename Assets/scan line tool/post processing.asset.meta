@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bd601d41a9227cc43a1e9fd049e2928e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/post processing.asset
+  uploadId: 691619

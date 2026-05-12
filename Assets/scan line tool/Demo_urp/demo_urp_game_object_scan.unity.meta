@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: efd26733d65c3c1449fc0c3b5be68349
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_urp/demo_urp_game_object_scan.unity
+  uploadId: 691619

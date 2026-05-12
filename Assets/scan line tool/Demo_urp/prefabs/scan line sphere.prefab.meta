@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 53e15d05c0133274881aeb206dae776e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_urp/prefabs/scan line sphere.prefab
+  uploadId: 691619

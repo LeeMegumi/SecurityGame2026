@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: a8c118280dd7ca047ac5d25af637d756
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/scripts/Auto_rotate_camera.cs
+  uploadId: 691619

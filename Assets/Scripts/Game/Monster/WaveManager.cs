@@ -130,7 +130,7 @@ public class WaveManager : MonoBehaviour
         // ★ 三關全部預熱，在開場或 Loading 畫面執行，避免遊戲中卡頓
         InitializePools();
 
-        GameEvents.current.OnGameStart += () => StartWave(0);  // 等遊戲開始事件觸發後再開始第一關
+        GameEvents.current.OnGameStart += GameStart;  // 等遊戲開始事件觸發後再開始第一關
         GameEvents.current.OnGameOver += GameOverAction;
         GameEvents.current.OnGameWin += GameWinAction;
     }
@@ -221,6 +221,7 @@ public class WaveManager : MonoBehaviour
 
         WaveConfig cfg = waves[waveIndex];
         Debug.Log($"開始第 {waveIndex + 1} 關：{cfg.waveName}（時限 {cfg.duration}s）");
+        BGMCrossfadeManager.instance.Crossfade(BGMCrossfadeManager.instance.GetCurrentSource(), BGMCrossfadeManager.instance.BGM_audioSource[waveIndex + 2], 2f); //淡入Wave 1 BGM，時間2秒
 
         GameEvents.current.ChangeStage();  // 通知遊戲階段改變
         waveState = WaveState.Running;  // 關卡執行中
@@ -398,15 +399,25 @@ public class WaveManager : MonoBehaviour
         _currentWaveMonsters.Add(monster);
     }
 
+    void GameStart()
+    {
+        waveState = WaveState.Running;
+        StartWave(0);
+        BGMCrossfadeManager.instance.FadeIn(BGMCrossfadeManager.instance.BGM_audioSource[2], 2f); //淡入Wave 1 BGM，時間2秒
+    }
     void GameOverAction()
     {
+        BGMCrossfadeManager.instance.Crossfade(BGMCrossfadeManager.instance.GetCurrentSource(), BGMCrossfadeManager.instance.BGM_audioSource[5], 1f); //淡入Wave 1 BGM，時間1秒
         waveState = WaveState.GameOver;
+        PlayerData.instance.currentPlayercontent.time = float.PositiveInfinity;
         _waveRunning = false;
         spawner.StopSpawning();
         Debug.Log("遊戲結束，停止所有關卡活動");
     }
     void GameWinAction()
     {
+        BGMCrossfadeManager.instance.Crossfade(BGMCrossfadeManager.instance.GetCurrentSource(), BGMCrossfadeManager.instance.BGM_audioSource[6], 1f); //淡入Wave 1 BGM，時間1秒
+        PlayerData.instance.currentPlayercontent.time = (_waveResults[0].timeUsed + _waveResults[1].timeUsed + _waveResults[2].timeUsed);
         waveState = WaveState.GameWin;
         _waveRunning = false;
         spawner.StopSpawning();

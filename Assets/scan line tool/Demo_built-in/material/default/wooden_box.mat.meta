@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 361c2aabcd3b6844da8cd1fd21218777
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_built-in/material/default/wooden_box.mat
+  uploadId: 691619

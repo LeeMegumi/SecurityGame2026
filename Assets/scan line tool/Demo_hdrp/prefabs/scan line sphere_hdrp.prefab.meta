@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 756731a14c4cf324fa9699c2a294c3de
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_hdrp/prefabs/scan line sphere_hdrp.prefab
+  uploadId: 691619

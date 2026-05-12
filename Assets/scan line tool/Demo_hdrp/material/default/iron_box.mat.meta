@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c59edae6f2fc99642abf3465108288c1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_hdrp/material/default/iron_box.mat
+  uploadId: 691619

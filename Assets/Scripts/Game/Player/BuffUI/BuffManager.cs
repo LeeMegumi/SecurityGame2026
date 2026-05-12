@@ -125,11 +125,11 @@ public class BuffManager : MonoBehaviour
         {
             t += Time.deltaTime;
             float ease = EaseOutCubic(Mathf.Clamp01(t / slideInDuration));
-            rt.anchoredPosition = Vector2.Lerp(startPos, endPos, ease);
+            rt.localPosition = Vector2.Lerp(startPos, endPos, ease);
             yield return null;
         }
 
-        rt.anchoredPosition = endPos;
+        rt.localPosition = endPos;
     }
 
     private static float EaseOutCubic(float x)

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0dd2f5cc82a6c284397b6a59f56548ba
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_urp/material/default/drum_green.mat
+  uploadId: 691619

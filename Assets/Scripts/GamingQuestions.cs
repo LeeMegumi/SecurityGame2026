@@ -17,12 +17,6 @@ public class GamingQuestions : MonoBehaviour
     public string[] WrongAnswerContexts;
 
 
-    [Header("問答正確錯誤圖卡")]
-    public Image AnswerResult_Image;
-    public Sprite Wrong_sprite;
-    public Sprite Correct_Sprite;
-
-
     private void Start()
     {
         Instance = this;
@@ -41,19 +35,18 @@ public class GamingQuestions : MonoBehaviour
         Question_Text.text = QuestionContexts[randomindex];
         if (mix == 0)
         {
-            AnswerLeft_Text.text = "A." + correctAnswer;
+            AnswerLeft_Text.text = correctAnswer;
             AnswerLeft_Text.gameObject.GetComponent<UITrigger>().triggerName = "Correct";
-            AnswerRight_Text.text = "B." + worngAnswer;
+            AnswerRight_Text.text = worngAnswer;
             AnswerRight_Text.gameObject.GetComponent<UITrigger>().triggerName = "Wrong";
         }
         else
         {
-            AnswerLeft_Text.text = "A." + worngAnswer;
+            AnswerLeft_Text.text = worngAnswer;
             AnswerLeft_Text.gameObject.GetComponent<UITrigger>().triggerName = "Wrong";
-            AnswerRight_Text.text = "B." + correctAnswer;
+            AnswerRight_Text.text = correctAnswer;
             AnswerRight_Text.gameObject.GetComponent<UITrigger>().triggerName = "Correct";
         }
     }
 
-    public void SetAnswerReslut_Sprite(string result) => AnswerResult_Image.sprite = result == "Correct" ? Correct_Sprite : Wrong_sprite;
 }

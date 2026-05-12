@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d28bc5743e86e7343a86f75a5049c484
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_built-in/material/scan_line_camera_quad_built-in.mat
+  uploadId: 691619

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 127597f9e4b083f438e73386c3261945
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/scripts/Scan_line_control.cs
+  uploadId: 691619

@@ -41,19 +41,21 @@ public class Bullet : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             gameObject.GetComponent<Collider>().enabled = false;
-            /*HitEffect_Pool.instance.Get(transform.position, Quaternion.identity, 2f, GetTextSize(currentDamage));
-            HitText_Pool.instance.Get(transform.position, Quaternion.identity, 2f, currentDamage);*/
             SphereCollider sphereCol = GetComponent<SphereCollider>();
             float radius = sphereCol.radius;
-
+            int randomindex = Random.Range(3, BGMCrossfadeManager.instance.Shot_audioClip.Length);
+            BGMCrossfadeManager.instance.PlaySFX(BGMCrossfadeManager.instance.OneShotAudio[2], BGMCrossfadeManager.instance.Shot_audioClip[randomindex]);
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
             foreach (Collider radiusOther in hitColliders)
             {
                 if (radiusOther.CompareTag("Enemy"))
                 {
                     //Debug.Log(radiusOther.name);
+
                     var enemy = radiusOther.GetComponent<EnemyBase>();
+                    GameEvents.current.ScoreGet(SetRendomScore(enemy._currentScoreValue));
                     enemy.TakeDamage(currentDamage);
+                    enemy.PlayAudioClip(enemy.EnemyAudioClips[0]);
                     enemy._waveManager?.NotifyEnemyDefeated(enemy, triggeredByWall: true);
                     HitEffect_Pool.instance.Get(radiusOther.transform.position, Quaternion.identity, 2f, GetTextSize(currentDamage));
                     HitText_Pool.instance.Get(radiusOther.transform.position, Quaternion.identity, 2f, currentDamage);
@@ -103,6 +105,11 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    int SetRendomScore(int scoreValue)
+    {
+        float randomFactor = Random.Range(0.8f, 1.2f);
+        return Mathf.RoundToInt(scoreValue * randomFactor * .1f);
+    }
     /// <summary>
     /// 設定基本傷害亂數數值，並且在每次調整後都四捨五入到整數，以確保傷害值為整數。
     /// </summary>

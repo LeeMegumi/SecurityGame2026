@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b07aa93902ffd88479cc641fae7655be
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_hdrp/prefabs/scan line cube_hdrp.prefab
+  uploadId: 691619

@@ -15,6 +15,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] public int _currentHealth;
     [SerializeField] public float _currentSpeed;
     [SerializeField] public int _currentWallDamage;
+    [SerializeField] public int _currentScoreValue;
 
     [Header("血條設定")]
     public EnemyHealthBar healthBar;
@@ -39,6 +40,9 @@ public class EnemyBase : MonoBehaviour
     [Header("── 特殊狀態檢視 ──")]
     public bool WeakMonster = false;
 
+    private AudioSource EnemyAudioSource;
+    public AudioClip[] EnemyAudioClips;
+
     // ──────────────────────────────────────────
     // 初始化（由物件池取出後呼叫）
     // ★ 增加 sourcePrefab 參數 & 完整狀態重置
@@ -46,6 +50,7 @@ public class EnemyBase : MonoBehaviour
     private void Start()
     {
         GameEvents.current.OnGameOver += GameOverAction; // 訂閱遊戲結束事件
+        EnemyAudioSource = GetComponent<AudioSource>();
     }
     public void Initialize(int level, WaveManager manager, GameObject sourcePrefab = null)
     {
@@ -72,7 +77,11 @@ public class EnemyBase : MonoBehaviour
         if (_waveManager.CurrentWave == 3 && temp.name.Contains("Weak")) 
         {
             //觸發技能
-            if (!Main.instance.TipA && _waveManager.CurrentWave == 3) Main.instance.TipA = true;
+            if (!Main.instance.TipA && _waveManager.CurrentWave == 3)
+            {
+                Main.instance.TipA = true;
+                Main.instance.TipA_Anim.Play("Tip_Show");
+            }
             GameEvents.current.EnemyWeakSkill();
             WeakMonster = true;
             var pos = new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, -40f));
@@ -101,6 +110,7 @@ public class EnemyBase : MonoBehaviour
         _currentSpeed = cfg.moveSpeed;
         _currentHealth = cfg.maxHealth;
         _currentWallDamage = cfg.wallDamage;
+        _currentScoreValue = cfg.scoreValue;
     }
 
     void Update()
@@ -144,6 +154,8 @@ public class EnemyBase : MonoBehaviour
     {
         if (_isDead || _isForceDead)
         {
+            GameEvents.current.Killed(1); // ★ 已死狀態仍然觸發擊殺事件，但分數會有隨機浮動
+            GameEvents.current.ScoreGet(SetRendomScore(_currentScoreValue)); // ★ 已死狀態仍然給分，但分數會有隨機浮動
             dissolveValue = .999f; // ★ 已死狀態持續觸發 Dissolve 效果
             return;
         }
@@ -187,6 +199,8 @@ public class EnemyBase : MonoBehaviour
     IEnumerator DeathRoutine()
     {
         EnemyAnimator?.Play("Death");
+        int randomIndex = Random.Range(1, EnemyAudioClips.Length);
+        PlayAudioClip(EnemyAudioClips[randomIndex]); // 播放死亡音效
         yield return new WaitForSeconds(deathAnimDuration);
         ReturnToPool();
     }
@@ -206,7 +220,8 @@ public class EnemyBase : MonoBehaviour
 
         if (other.CompareTag("Wall"))
         {
-            if (!Main.instance.TipB && _waveManager.CurrentWave == 3) Main.instance.TipB = true;
+            if (!Main.instance.TipB && _waveManager.CurrentWave == 3)
+            { Main.instance.TipB = true; Main.instance.TipB_Anim.Play("Tip_Show"); }
             Debug.Log("Take Damage : " + _currentWallDamage);
             _isDead = true;
 
@@ -303,6 +318,19 @@ public class EnemyBase : MonoBehaviour
         _currentSpeed = 0; // 停止移動
         string[] danceAnime = new string[] { "DanceA", "DanceB", "DanceC", "DanceD" };
         EnemyAnimator.Play(danceAnime[Random.Range(0, danceAnime.Length)]);// 跳舞
+    }
+
+    int SetRendomScore(int scoreValue)
+    {
+        float randomFactor = Random.Range(0.8f, 1.2f);
+        return Mathf.RoundToInt(scoreValue * randomFactor);
+    }
+    public void PlayAudioClip(AudioClip clip)
+    {
+        if (EnemyAudioSource != null && clip != null)
+        {
+            EnemyAudioSource.PlayOneShot(clip);
+        }
     }
     void OnDestroy()
     {

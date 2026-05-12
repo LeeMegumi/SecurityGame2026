@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ad6f57e5e57ad614aa860edeb3b32966
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/animator/cube_man.controller
+  uploadId: 691619

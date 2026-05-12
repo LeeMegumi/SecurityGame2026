@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3f7d69b6cf0e9594bab0eba65ce002a7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_hdrp/material/scan_line_sphere_2_hdrp.mat
+  uploadId: 691619

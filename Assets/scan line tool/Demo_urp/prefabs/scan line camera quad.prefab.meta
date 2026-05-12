@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3a8b44bff8bc8e44c8955b7f565432ba
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_urp/prefabs/scan line camera quad.prefab
+  uploadId: 691619

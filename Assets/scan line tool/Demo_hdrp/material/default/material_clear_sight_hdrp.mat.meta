@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e436fb1346b43634f91257346d44de44
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_hdrp/material/default/material_clear_sight_hdrp.mat
+  uploadId: 691619

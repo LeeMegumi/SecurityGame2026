@@ -6,11 +6,24 @@ public class SettingCanvas : MonoBehaviour
     public WallTouchVisualizer walltouchvisualizer;
     public CanvasGroup USTPanelCanvasGroup;
     public CanvasGroup LotteryPanelCanvasGroup;
-    public CanvasGroup OUTPUT_Texture;
+    [SerializeField]private RectTransform LEDOUTPUT_Rect;
+    private bool OUTPUT_TextureFull;
+    private bool menuDebug;
+
+    public BoxCollider2D menucollider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        OUTPUT_TextureFull = true;
+        menuDebug = false;
+        menucollider.isTrigger = !menuDebug;
+
+        LotteryPanelCanvasGroup.alpha = 1;
+        LotteryPanelCanvasGroup.interactable = true ;
+        LotteryPanelCanvasGroup.blocksRaycasts = true;
+        USTPanelCanvasGroup.alpha = 0;
+        USTPanelCanvasGroup.interactable = false;
+        USTPanelCanvasGroup.blocksRaycasts = false;
     }
 
     // Update is called once per frame
@@ -37,9 +50,9 @@ public class SettingCanvas : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.U))
         {
-            OUTPUT_Texture.alpha = OUTPUT_Texture.alpha == 0 ? 1 : 0;
-            OUTPUT_Texture.interactable = OUTPUT_Texture.interactable == false ? true : false;
-            OUTPUT_Texture.blocksRaycasts = OUTPUT_Texture.blocksRaycasts == false ? true : false;
+            OUTPUT_TextureFull = !OUTPUT_TextureFull; //切換輸出畫面
+            LEDOUTPUT_Rect.anchoredPosition = OUTPUT_TextureFull == true ? new Vector2(0, 0) : new Vector2(-384, 156);
+            LEDOUTPUT_Rect.localScale = OUTPUT_TextureFull == true ? new Vector2(1, 1) : new Vector2(0.6f, 0.6f);
         }
 
         if (Input.GetKeyUp(KeyCode.V))
@@ -49,6 +62,11 @@ public class SettingCanvas : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.R))
         {
             SceneManager.LoadScene(0);
+        }
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            menuDebug = !menuDebug; //切換輸出畫面
+            menucollider.isTrigger = !menuDebug;
         }
 
 

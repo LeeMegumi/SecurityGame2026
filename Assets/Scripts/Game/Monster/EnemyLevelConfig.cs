@@ -14,4 +14,5 @@ public class EnemyLevelConfig
     public float moveSpeed = 3f;       // 移動速度
     public int maxHealth = 100;     // 最大血量
     public int wallDamage = 10;      // 碰撞城牆造成的傷害
+    public int scoreValue = 100;    // 被擊殺後給予玩家的分數
 }

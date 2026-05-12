@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -55,6 +56,9 @@ public class WallTouchDetector : MonoBehaviour
     {
         if (sensorX == 0) sensorX = wallWidth * 0.5f;
         if (sensorY == 0) sensorY = wallHeight;
+
+
+        Invoke("_invokeinit", 1f);
     }
 
     void Update()
@@ -227,5 +231,12 @@ public class WallTouchDetector : MonoBehaviour
             Vector2 pos = StepDistToWallPos(i, d);
             Debug.Log($"Step {i} dist={d} → ({pos.x:F0}, {pos.y:F0})");
         }
+    }
+
+    void _invokeinit()
+    {
+        var distances = hokuyo.GetDistances();
+        ScanWallSteps(distances);
+        Calibrate(distances);
     }
 }

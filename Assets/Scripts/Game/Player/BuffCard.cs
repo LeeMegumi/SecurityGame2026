@@ -118,7 +118,7 @@ public class BuffCard : MonoBehaviour
             case CardType.Scan:
             case CardType.ShieldHeal:
                 //執行掃描敵人的相關程式碼
-
+                ScanSkill_Pool.instance.Get(Vector3.zero, Quaternion.identity, 5); //從物件池生成掃描技能特效
                 //執行回復護盾的相關程式碼
                 GameEvents.current.HealShield(); //觸發回復護盾的事件
                 break;

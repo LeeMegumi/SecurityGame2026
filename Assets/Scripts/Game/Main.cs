@@ -31,6 +31,9 @@ public class Main : MonoBehaviour
     public bool CurrentDamageBuff;
     public bool CurrentRangeBuff;
 
+
+    public GameObject invincibleIcon;  //無敵圖示，選擇資安模式會顯示，代表玩家不會被敵人攻擊到
+
     public float ReadyTime = 3f; //準備階段的倒數時間    
 
     [Header("遊戲狀態")]
@@ -71,6 +74,8 @@ public class Main : MonoBehaviour
     public bool TipB;
     public Animation TipA_Anim;
     public Animation TipB_Anim;
+
+    public Animation AnswerResultAnime;
     private void Awake()
     {
         if (instance == null)
@@ -95,10 +100,10 @@ public class Main : MonoBehaviour
         GameEvents.current.OnGameWin += GameWinAction;  //訂閱任務完成事件
         GameEvents.current.OnAnswerQuestion += TriggerAnswerQuestion;  //訂閱答題事件
         currentStage = GameStage.Home;
-        currentMode = GameMode.Eazy;
+        GameEvents.current.ChangeInvincible(true); //預設進入選擇階段後是無敵模式，直到選擇困難模式才會變成非無敵...
         ReadyTime = 5f;
         UIVideo.loopPointReached +=  (VideoPlayer vp) =>TriggerNextStage();  //VideoStage結束後自動進入下一階段
-
+        BGMCrossfadeManager.instance.FadeIn(BGMCrossfadeManager.instance.BGM_audioSource[0], .5f); //淡入首頁BGM，時間0.5秒
     }
 
     // Update is called once per frame
@@ -109,6 +114,7 @@ public class Main : MonoBehaviour
             currentStage = GameStage.Answer;
             GamingQuestions.Instance.SetQuestionAndAnswer();  //在進入Answer階段前先設定好題目和答案
             StageUI_Animator.Play("ResultToAnswer");
+            BGMCrossfadeManager.instance.Crossfade(BGMCrossfadeManager.instance.GetCurrentSource(), BGMCrossfadeManager.instance.BGM_audioSource[1], 2f); //切換到Tutorial階段的BGM，淡入時間2秒
             //GameEvents.current.AwardGet("Bad");
         }
 
@@ -120,6 +126,8 @@ public class Main : MonoBehaviour
         {
             //快速開始，進入Ready階段
             UICanvasTriggeredAction("VideoTrigger");
+            BGMCrossfadeManager.instance.FadeOut(BGMCrossfadeManager.instance.GetCurrentSource(), 2f); //淡出當前BGM，時間2秒
+
         }
         switch (currentStage)   
         {
@@ -133,7 +141,7 @@ public class Main : MonoBehaviour
                
                 break;
             case GameStage.Videos:
-             
+                
                 break;
             case GameStage.Ready:
                 //倒數3秒後進入遊戲
@@ -146,15 +154,7 @@ public class Main : MonoBehaviour
                 }
                 break;
             case GameStage.Game:
-                if (TipA)
-                {
-                    TipA_Anim.Play("Tip_Show");
-                }
-                if (TipB)
-                {
-                    TipB_Anim.Play("Tip_Show");
-                }
-
+ 
                 break;
             case GameStage.Answer:
 
@@ -174,24 +174,30 @@ public class Main : MonoBehaviour
             case "HomeTrigger":
                 currentStage = GameStage.Tutorial;
                 StageUI_Animator.Play("HomeToTutorial");
+                BGMCrossfadeManager.instance.Crossfade(BGMCrossfadeManager.instance.BGM_audioSource[0], BGMCrossfadeManager.instance.BGM_audioSource[1], 2f); //切換到Tutorial階段的BGM，淡入時間2秒
                 break;
             case "TutorialTrigger":
                 currentStage = GameStage.Choose;
                 StageUI_Animator.Play("TutorialToChoose");
+                BGMCrossfadeManager.instance.FadeOut(BGMCrossfadeManager.instance.BGM_audioSource[1], 2f); //淡出Tutorial階段的BGM，時間2秒
+
                 break;
             case "HardTrigger":
                 currentStage = GameStage.Videos;
-                currentMode = GameMode.Hard;
+                GameEvents.current.ChangeInvincible(false);
                 UIVideo.clip = videoClip[1];
                 UIVideo.Play();
                 StageUI_Animator.Play("ChooseToVideo");
+                BGMCrossfadeManager.instance.FadeOut(BGMCrossfadeManager.instance.GetCurrentSource(), 2f); //淡出Tutorial階段的BGM，時間2秒
+
                 break;
             case "EazyTrigger":
                 currentStage = GameStage.Videos;
-                currentMode = GameMode.Eazy;
+                GameEvents.current.ChangeInvincible(true);
                 UIVideo.Play();
                 UIVideo.clip = videoClip[0];
                 StageUI_Animator.Play("ChooseToVideo");
+                BGMCrossfadeManager.instance.FadeOut(BGMCrossfadeManager.instance.GetCurrentSource(), 2f); //淡出Tutorial階段的BGM，時間2秒
                 break;
             case "VideoTrigger":
                 StageUI_Animator.Play("VideoToReady");
@@ -200,11 +206,13 @@ public class Main : MonoBehaviour
                 break;
             case "ResultTrigger":
                 GamingQuestions.Instance.SetQuestionAndAnswer();  //在進入Answer階段前先設定好題目和答案
+                BGMCrossfadeManager.instance.Crossfade(BGMCrossfadeManager.instance.GetCurrentSource(), BGMCrossfadeManager.instance.BGM_audioSource[1], 2f); //淡出Tutorial階段的BGM，時間2秒
                 StageUI_Animator.Play("ResultToAnswer");
                 currentStage = GameStage.Answer;
                 break;
             case "AwardTrigger":
                 GamingQuestions.Instance.SetQuestionAndAnswer();  //在進入Answer階段前先設定好題目和答案
+                StageUI_Animator.Play("ResultToAnswer");
                 StageUI_Animator.Play("AwardToAnswer");
                 currentStage = GameStage.Answer;
                 break;
@@ -221,6 +229,7 @@ public class Main : MonoBehaviour
             case GameStage.Home:
                 currentStage = GameStage.Tutorial;
                 StageUI_Animator.Play("HomeToTutorial");
+                BGMCrossfadeManager.instance.Crossfade(BGMCrossfadeManager.instance.BGM_audioSource[0], BGMCrossfadeManager.instance.BGM_audioSource[1], 2f); //切換到Tutorial階段的BGM，淡入時間2秒
                 break;
             case GameStage.Tutorial:
                 currentStage = GameStage.Choose;
@@ -228,10 +237,16 @@ public class Main : MonoBehaviour
                 break;
             case GameStage.Choose:
                 currentStage = GameStage.Videos;
-                currentMode = GameMode.Eazy;
+                GameEvents.current.ChangeInvincible(true);
                 UIVideo.clip = videoClip[1];
                 UIVideo.Play();
                 StageUI_Animator.Play("ChooseToVideo");
+                BGMCrossfadeManager.instance.FadeOut(BGMCrossfadeManager.instance.GetCurrentSource(), 2f); //淡出Tutorial階段的BGM，時間2秒
+                break;
+            case GameStage.Videos:
+                StageUI_Animator.Play("VideoToReady");
+                Counter3D_Animator.Play("CountStart");
+                currentStage = GameStage.Ready;
                 break;
             case GameStage.Complete:
             case GameStage.Failed:
@@ -253,6 +268,9 @@ public class Main : MonoBehaviour
     void TriggerAnswerQuestion(string Answer)
     {
         if(currentStage!= GameStage.Answer) return;  //確保只有在Answer階段才會觸發答題事件
+        AnswerResultAnime.Play(Answer == "Correct" ? "Correct" : "Wrong");
+        BGMCrossfadeManager.instance.PlaySFX(BGMCrossfadeManager.instance.OneShotAudio[0]
+            ,Answer == "Correct" ? BGMCrossfadeManager.instance.Shot_audioClip[1] : BGMCrossfadeManager.instance.Shot_audioClip[0]); //播放正確或錯誤的音效，正確音效音量較大
         //判斷答案是否正確，並觸發相對應的事件
         currentStage = GameStage.Award;
         StageUI_Animator.Play("AnswerToAward");
@@ -264,10 +282,12 @@ public class Main : MonoBehaviour
     {
         if (isEazy)
         {
+            invincibleIcon.SetActive(true);
             currentMode = GameMode.Eazy;
         }
         else
         {
+            invincibleIcon.SetActive(false);
             currentMode = GameMode.Hard;
         }
     }
@@ -312,14 +332,14 @@ public class Main : MonoBehaviour
     public void GameWinAction()
     {
         currentStage = GameStage.Complete;
+        
 
         IsGaming = false;
         SpawnBulletAllow = false;
         MissionCompleteVFX.SetActive(true);
         //替換UI動畫為成功Sprite，文字、背景
-        resultBG_Image.sprite = resultBG_Sprites[1];
-        
-        resultText_Image.sprite = currentMode == GameMode.Eazy ? resultText_Sprites[1] : resultText_Sprites[2];
+        resultBG_Image.sprite =  currentMode == GameMode.Eazy ? resultBG_Sprites[1] : resultBG_Sprites[2];
+        resultText_Image.sprite = resultText_Sprites[1];
         //成功音效
         StageUI_Animator.Play("GameToResult");
     }

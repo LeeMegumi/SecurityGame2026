@@ -24459,8 +24459,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8123337848361810005}
   - {fileID: 8323192501765452947}
@@ -24516,7 +24516,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 3223f7ef5ea302842a0fba28457545a4, type: 2}
   - {fileID: 2100000, guid: 9d35d9722b4f00a41ad6df2cedc893bc, type: 2}
   - {fileID: 2100000, guid: 9eecfb2d1486227409cc75a52efc2443, type: 2}
-  constSpawnTimeLimit: {x: 10, y: 15}
+  constSpawnTimeLimit: {x: 3, y: 8}
   SpwanCounter: 0
   CardAnimator: {fileID: 8298416161061729474}
   isActive: 0

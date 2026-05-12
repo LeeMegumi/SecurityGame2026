@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4e6f136a6f45a954bac5344f1aeeabba
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_urp/material/default/material_clear_sight_urp.mat
+  uploadId: 691619

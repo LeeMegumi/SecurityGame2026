@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 49532c8af7ae53d46b2be83057ba17b7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 295149
+  packageName: Scan Line Tool
+  packageVersion: 1.0
+  assetPath: Assets/scan line tool/Demo_built-in/material/default/cube_man.mat
+  uploadId: 691619
